@@ -78,7 +78,11 @@
     </form>
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
     <script>
-      var socket = io("http://localhost:3000");
+      const URL = window.location.hostname.includes("localhost")
+        ? "http://localhost:3000"
+        : `https://${window.location.hostname}/`;
+
+      var socket = io(URL);
 
       document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("form");

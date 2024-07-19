@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 import { Server as HttpServer } from "http";
-import messages from "./controllers/messages";
+import messages from "../controllers/messages";
 
 export const setupSocket = (server: HttpServer) => {
   const io = new Server(server, {

@@ -41,6 +41,13 @@
         background: #333;
       }
 
+      .date {
+        display: block;
+        font-size: 0.8em;
+        color: #888;
+        margin-top: 5px;
+      }
+
       form {
         display: flex;
         width: 100%;
@@ -115,18 +122,27 @@
         socket.on("previous-messages", function (msgs) {
           messages.innerHTML = "";
           msgs.forEach(function (msg) {
-            const item = document.createElement("li");
-            item.textContent = `${msg.username}: ${msg.content} (at ${new Date(msg.created_at).toLocaleString()})`;
-            messages.appendChild(item);
+            appendMessage(msg);
           });
         });
 
         socket.on("message-received", function (msg) {
-          const item = document.createElement("li");
-          item.textContent = `${msg.username}: ${msg.content} (at ${new Date(msg.created_at).toLocaleString()})`;
-          messages.appendChild(item);
+          appendMessage(msg);
           window.scrollTo(0, document.body.scrollHeight);
         });
+
+        function appendMessage(msg) {
+          const item = document.createElement("li");
+          const date = new Date(msg.created_at);
+          const formattedDate = `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1)
+            .toString()
+            .padStart(2, "0")}/${date.getFullYear().toString().padStart(2, "0")} ${date
+            .getHours()
+            .toString()
+            .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
+          item.innerHTML = `<span>${msg.username}: ${msg.content}</span><span class="date">${formattedDate}</span>`;
+          messages.appendChild(item);
+        }
       });
     </script>
   </body>

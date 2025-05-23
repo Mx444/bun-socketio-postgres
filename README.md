@@ -1,6 +1,7 @@
 # Bun-SocketIO-Postgres
 
-<img src="https://bun.sh/logo.svg" alt="Bun Logo" width="30" height="30"> 
+<img src="https://bun.sh/logo.svg" alt="Bun Logo" width="100" height="100" style="display: block; margin: 0 auto;">
+
 
 A real-time chat application built with Bun, Socket.IO, and PostgreSQL. This project serves as an exercise to test Socket.IO functionality and real-time communication.
 
